@@ -6,8 +6,8 @@ import api from "./client";
 
 export interface CommentUser {
   id: number;
-  name?: string;
-  email?: string;
+  email: string;
+  nickname: string;
 }
 
 // ========================================
@@ -26,7 +26,7 @@ export interface Comment {
 }
 
 // ========================================
-// 응답 타입
+// API 응답
 // ========================================
 
 interface CommentListResponse {
