@@ -1,16 +1,14 @@
-import express from "express";
-import cors from "cors";
-import dotenv from "dotenv";
-
-dotenv.config();
-
+import express from 'express';
+import authRouter from './routes/auth.routes';
+import hobbyRoutes from "./routes/hobby.routes"
+import hobbyRecordRoutes from './routes/hobby-record.routes';
+import stampRoutes from "./routes/stamp.routes";
 const app = express();
 
-app.use(cors());
 app.use(express.json());
 
-app.get("/", (req, res) => {
-  res.send("HobbyStamp server running");
-});
-
+app.use('/auth', authRouter);
+app.use('/api/hobbies', hobbyRoutes);
+app.use('/api/hobby-records', hobbyRecordRoutes);
+app.use("/stamps", stampRoutes);
 export default app;

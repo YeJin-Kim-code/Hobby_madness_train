@@ -1,7 +1,16 @@
-import app from "./app";
+import app from './app';
+import { AppDataSource } from './config/data-source';
+import { seedHobbies } from './seeds/hobby.seed';
 
-const PORT = process.env.PORT || 3000;
+AppDataSource.initialize()
+  .then(async() => {
+    console.log('DB Connected');
 
-app.listen(PORT, () => {
-  console.log(`HobbyStamp server running on port ${PORT}`);
-});
+    await seedHobbies();
+    app.listen(3000, () => {
+      console.log('Server Running');
+    });
+  })
+  .catch((error) => {
+    console.error(error);
+  });
